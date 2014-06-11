@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1' 
+gem 'rails_12factor', group: :production
 gem 'less-rails'
 gem 'thin'
 gem 'pg', '0.17.1'
