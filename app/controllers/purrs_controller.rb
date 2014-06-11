@@ -1,0 +1,3 @@
+class PurrsController < ApplicationController
+
+end

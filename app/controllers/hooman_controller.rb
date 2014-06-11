@@ -1,0 +1,2 @@
+class HoomanController < ApplicationController
+end

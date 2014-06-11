@@ -1,0 +1,83 @@
+<%- model_class = Purr -%>
+<center><%= image_tag('the_sir.png', size: "175x175",alt: "Hello The Sir") %></center><br />
+<center><h1>speak to me, <small>hooman</small></h1>
+<hr />
+<body>
+<center>
+   <div id='chatdiv' style='overflow:auto; height: 270px; width:750px;'>
+
+   </div>
+   <div class='control-group'>
+      <div class='controls'>
+      <input type='text' id = 'type_msg'
+         style='width: 530px; height: 25px; margin:2px'>
+      <button id='clicker' class='btn btn-success'>speak</button> 
+      </div>
+   </div>
+   </center>
+</body>
+
+<script type='text/javascript'>
+var speak = function(len) {
+   var reply=randomString(len);
+   var replies = 'the cat: ';
+   replies=replies+reply+'\n';
+   $('#chatdiv').append("<div class='span7' style='text-align: left;'><font color='gray'>"+replies+"</span></font><hr />");
+   $('#chatdiv').scrollTop($('#chatdiv')[0].scrollHeight);
+};
+
+timers = new Array();
+
+$(document).ready(function () { 
+   foreverAlone();
+});
+
+function clearTM() {
+   if(this.timers.length > 1){
+     for(var i = 0; i< this.timers.length-1; i++)
+     {
+        clearTimeout(this.timers[i]);
+     }
+  }
+}
+
+(function foreverAlone() {
+     clearTM();
+     var rand = Math.round(Math.random() * (25000-5000)) + 5000;
+     this.timers.push(setTimeout(function() {
+        var len=randomLen(8,1);
+        speak(len);
+        foreverAlone();  
+}, rand));
+} ());
+
+function randomLen(max,min){
+    return Math.floor(Math.random() * (max - 1 + min)) + min;
+}
+function randomNum(){
+    return Math.floor(Math.random() * (122-48)) + 48;
+} 
+function randomChar(){
+    return String.fromCharCode(randomNum());
+}
+function randomString(length){
+   var str = "";
+   for(var i=0;i<length;i++){
+      new_char=randomChar();
+      for(var j = 0; j<randomLen(16,1);j++){
+         str += new_char;
+      } 
+   } 
+   return str;
+}
+</script>
+<script type='text/javascript'>
+$('#clicker').on('click', function(e) {
+   var speaks = 'hooman: ';
+   speaks+=$('#type_msg').val()+'\n';
+   $('#chatdiv').append("<div class='span7' style='text-align: left;'><font color='YellowGreen'>"+speaks+"</span></font><hr />");
+   $('#type_msg').val('');
+   $('#chatdiv').scrollTop($('#chatdiv')[0].scrollHeight);
+})
+</script>
+
