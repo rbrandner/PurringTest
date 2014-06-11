@@ -5,15 +5,16 @@
 <body>
 <center>
    <div id='chatdiv' style='overflow:auto; height: 270px; width:750px;'>
-
+   <form id='myform'>
    </div>
    <div class='control-group'>
       <div class='controls'>
       <input type='text' id = 'type_msg'
          style='width: 530px; height: 25px; margin:2px'>
-      <button id='clicker' class='btn btn-success'>speak</button> 
+      <input type='submit' id='clicker' class='btn btn-success' value='speak'>
       </div>
    </div>
+   </form>
    </center>
 <footer>
    <%=render 'layouts/footer' %>
@@ -75,7 +76,8 @@ function randomString(length){
 }
 </script>
 <script type='text/javascript'>
-$('#clicker').on('click', function(e) {
+$('#myform').submit(function(e) {
+   event.preventDefault();
    var speaks = 'hooman: ';
    speaks+=$('#type_msg').val()+'\n';
    $('#chatdiv').append("<div class='span7' style='text-align: left;'><font color='YellowGreen'>"+speaks+"</span></font><hr />");
